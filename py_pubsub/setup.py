@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'py_pub'
+package_name = 'py_pubsub'
 
 setup(
     name=package_name,
@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='yajattikam',
     maintainer_email='yajat.a.tikam@gmail.com',
-    description='Basic publisher node.: Package description',
+    description='Basic Python publisher and subscriber node package.: Package description',
     license='Apache-2.0',
     extras_require={
         'test': [
@@ -26,6 +26,7 @@ setup(
     entry_points={
         'console_scripts': [
             'talker = py_pub.publisher_member_function:main',
+            'listener = py_sub.subscriber_member_function:main',
         ],
     },
 )
