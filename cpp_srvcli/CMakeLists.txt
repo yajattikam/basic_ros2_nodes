@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(cpp_pubsub)
+project(cpp_srvcli)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,20 +8,12 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(example_interfaces REQUIRED)
 
-#Add Executable and link libraries
-add_executable(talker src/publisher_lambda_function.cpp)
-target_link_libraries(talker PUBLIC rclcpp::rclcpp std_msgs::std_msgs)
-add_executable(listener src/subscriber_lambda_function.cpp)
-target_link_libraries(listener PUBLIC rclcpp::rclcpp std_msgs::std_msgs)
-
-#Install target executable
-install( TARGETS
-  talker
-  listener
-  DESTINATION lib/${PROJECT_NAME}
-)
+add_executable(server src/add_two_ints_server.cpp)
+target_link_libraries(server PUBLIC rclcpp::rclcpp example_interfaces::example_interfaces)
+add_executable(client src/add_two_ints_client.cpp)
+target_link_libraries(client PUBLIC rclcpp::rclcpp example_interfaces::example_interfaces)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -35,6 +27,9 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+install(TARGETS
+    server
+    client
+  DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
-

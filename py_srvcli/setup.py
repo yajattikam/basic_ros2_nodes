@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'py_pubsub'
+package_name = 'py_srvcli'
 
 setup(
     name=package_name,
@@ -16,7 +16,7 @@ setup(
     zip_safe=True,
     maintainer='yajattikam',
     maintainer_email='yajat.a.tikam@gmail.com',
-    description='Basic Python publisher and subscriber node package.: Package description',
+    description='Basic service client python node package.: Package description',
     license='Apache-2.0',
     extras_require={
         'test': [
@@ -25,8 +25,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'talker = py_pubsub.publisher_member_function:main',
-            'listener = py_pubsub.subscriber_member_function:main',
+            'service = py_srvcli.service_member_function:main',
+            'client = py_srvcli.client_member_function:main',
         ],
     },
 )
