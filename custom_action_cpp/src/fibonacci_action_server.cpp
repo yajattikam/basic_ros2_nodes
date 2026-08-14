@@ -47,6 +47,7 @@ public:
       // so we declare a lambda function to be called inside a new thread
       auto execute_in_thread = [this, goal_handle](){return this->execute(goal_handle);};
       std::thread{execute_in_thread}.detach();
+    
     };
 
     this->action_server_ = rclcpp_action::create_server<Fibonacci>(

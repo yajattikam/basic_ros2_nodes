@@ -41,9 +41,12 @@ public:
       RCLCPP_ERROR(this->get_logger(), "Action server not available after waiting");
       rclcpp::shutdown();
     }
-
+    
+    this->declare_parameter("order", 10);
+    int order = this->get_parameter("order").as_int();
+    
     auto goal_msg = Fibonacci::Goal();
-    goal_msg.order = 10;
+    goal_msg.order = order;
 
     RCLCPP_INFO(this->get_logger(), "Sending goal");
 
